@@ -28,17 +28,16 @@
 				var added = form.added.value;
 				var newPas = form.newPas;
 				var pass1;
-				var pass0 = "|1|"+login+"|2|"+mpass+"|3|"+login+"|4|"+mpass+"|5|"+login+"|6|"+mpass+"|7|";
-				console.log(pass0);
+				var pass0 = "|1|"+mpass+"|2|"+login+"|3|"+added+"|4|"+mpass+"|5|"+login+"|6|"+added+"|7|"+mpass+"|8|"+login+"|9|"+added+"|10|";
 				if (newPas.checked==true) {
 					if(confirmPass==mpass){
-						pass1 = XXH.h32(pass0, 1).toString(16);
+						pass1 = XXH.h32(pass0, 1).toString(16)+added;
 					}
 					else
 					{pass1 = "password&confirm must match";
 					}
 					} else {
-					pass1 = XXH.h32(pass0, 1).toString(16);
+					pass1 = XXH.h32(pass0, 1).toString(16)+added;
 				}	
 				form.out.value = pass1;
 				form.login.value = form.mpass.value = form.confirmPass.value = "";
