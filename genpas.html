@@ -10,7 +10,7 @@
 		</script>
 		<script>
 			function enableConfirm() {
-				var isDisabled = document.getElementById("confirm");
+				var isDisabled = document.getElementById("confirmPass");
 				if (isDisabled.disabled==true){
 					isDisabled.disabled=false;
 				}
@@ -19,27 +19,29 @@
 				}	
 			}
 			function disableConfirm() {
-				document.getElementById("confirm").disabled = true;
+				document.getElementById("confirmPass").disabled = true;
 			}
 			function showPass(form) {
 				var login = form.login.value;
 				var mpass = form.mpass.value;
-				var confirm = form.confirm.value;
+				var confirmPass = form.confirmPass.value;
+				var added = form.added.value;
 				var newPas = form.newPas;
 				var pass1;
 				var pass0 = "|1|"+login+"|2|"+mpass+"|3|"+login+"|4|"+mpass+"|5|"+login+"|6|"+mpass+"|7|";
+				console.log(pass0);
 				if (newPas.checked==true) {
-					if(confirm==mpass){
-						pass1 = XXH.h32(pass0, 1).toString(16)+"+Ab";
+					if(confirmPass==mpass){
+						pass1 = XXH.h32(pass0, 1).toString(16);
 					}
 					else
-					{pass1 = "pos&confirm must match";
+					{pass1 = "password&confirm must match";
 					}
 					} else {
-					pass1 = XXH.h32(pass0, 1).toString(16)+"+Ab";
+					pass1 = XXH.h32(pass0, 1).toString(16);
 				}	
 				form.out.value = pass1;
-				form.login.value = form.mpass.value = form.confirm.value = "";
+				form.login.value = form.mpass.value = form.confirmPass.value = "";
 			}
 			function myCopyFunction() {
 				var copyText = document.getElementById("out");
@@ -57,13 +59,17 @@
 				<input type="checkbox" id="newPas" name="newPas" onclick="enableConfirm()">
 			</div>
 			<div>
-				<label for="confirm">Confirm password: </label>
-				<input disabled type="password" id="confirm" name="confirm">
+				<label for="confirmPass">Confirm password: </label>
+				<input disabled type="password" id="confirmPass" name="confirmPass">
 			</div>
 			<div>
 				<label for="login">Login: </label>
 				<input type="text" id="login" name="login" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off">
 			</div>
+			<div>
+				<label for="added">Added: </label>
+				<input type="text" id="added" name="added" autocomplete="off" autocapitalize="off" spellcheck="false" autocorrect="off" value="+Ab">
+			</div>			
 			<div>
 				<label for="out">Generated password: </label>
 				<input readonly type="text" id="out" name="out">
